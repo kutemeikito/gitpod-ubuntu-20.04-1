@@ -1,7 +1,7 @@
-FROM ubuntu:20.04
-LABEL org.opencontainers.image.title="Traversaro's Ubuntu 20.04 blank image with VNC support"
+FROM ubuntu:22.04
+LABEL org.opencontainers.image.title="Traversaro's Ubuntu 22.04 blank image with VNC support"
 LABEL org.opencontainers.image.description="Infrastructure for running grasping experiments with the iCub humanoid in Gazebo"
-LABEL org.opencontainers.image.source="https://github.com/traversaro/gitpod-ubuntu-20.04"
+LABEL org.opencontainers.image.source="https://github.com/traversaro/gitpod-ubuntu-22.04"
 LABEL org.opencontainers.image.authors="Silvio Traversaro <silvio.traversaro@iit.it>"
 
 # Non-interactive installation mode
@@ -33,6 +33,10 @@ RUN apt-get install -y bash-completion build-essential cmake cmake-curses-gui co
     
 # Install magic-wormwhole to get things from one computer to another safely
 RUN apt install -y magic-wormhole
+
+#Install Akhilnarang Scripts
+RUN git clone https://github.com/akhilnarang/scripts
+RUN bash $HOME/scripts/setup/android_build_env.sh
 
 # Install Oh My ZSH Powerlvl10k
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
